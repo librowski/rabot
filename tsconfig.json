@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "lib": [
+            "dom",
+            "esnext"
+        ],
+        "module": "commonjs",
+        "baseUrl": "src",
+        "rootDir": "src",
+        "outDir": "build",
+        "forceConsistentCasingInFileNames": true,
+        "esModuleInterop": true,
+        "noImplicitAny": true,
+        "skipLibCheck": true,
+        "sourceMap": true,
+    },
+    "exclude": [
+        "node_modules",
+    ],
+}

@@ -1,0 +1,33 @@
+{
+    "files.exclude": {
+        "**/logs": true,
+        "**/*.log": true,
+        "**/npm-debug.log*": true,
+        "**/yarn-debug.log*": true,
+        "**/yarn-error.log*": true,
+        "**/lerna-debug.log*": true,
+        "**/report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json": true,
+        "**/pids": true,
+        "**/*.pid": true,
+        "**/*.seed": true,
+        "**/*.pid.lock": true,
+        "**/lib-cov": true,
+        "**/coverage": true,
+        "**/*.lcov": true,
+        "**/.nyc_output": true,
+        "**/.grunt": true,
+        "**/bower_components": true,
+        "**/.lock-wscript": true,
+        "build/Release": true,
+        "**/node_modules/": true,
+        "**/build/": true,
+        "**/.vscode/": true
+    },
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/*.code-search": true,
+        "**/build/": true
+    },
+    "typescript.preferences.importModuleSpecifierEnding": "minimal",
+}
