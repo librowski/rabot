@@ -8,6 +8,6 @@ export const isTextMessage
 const escapeRegex = /[_*\[\]()~`>#+-=|{}!]/g;
 export const parseJobs = _.map(
     _.mapValues(
-        (text: string) => text.replaceAll(escapeRegex, '\\$&')
+        (text: string) => text.replace(escapeRegex, '\\$&')
     )
 );

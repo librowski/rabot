@@ -1,0 +1,25 @@
+version: '3.7'
+
+services:
+    rabotDB:
+        image: mongo:latest
+        ports:
+            - 27017:27017
+    app:
+        build:
+          context: .
+          dockerfile: Dockerfile.dev
+        command: yarn dev
+        environment: 
+            MONGO_URL: rabotDB
+        volumes:
+            - .:/app
+            - nodemodules:/app/node_modules
+        links:
+            - rabotDB 
+        depends_on: 
+            - rabotDB
+        env_file: .env
+
+volumes:
+    nodemodules: {}

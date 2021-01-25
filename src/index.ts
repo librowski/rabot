@@ -9,7 +9,9 @@ const { BOT_TOKEN } = process.env;
 (async () => {
     await initBrowser(); 
 
-    const bot = new Telegraf<RabotContext>(BOT_TOKEN);
+    const bot = new Telegraf<RabotContext>(BOT_TOKEN, {
+       
+    });
 
     const stage = new Stage([
         searchJobsScene

@@ -4,7 +4,9 @@ export let browser: Browser, page: Page;
 
 export const initBrowser = async (): Promise<void> => {
     browser = await puppeteer.launch({
-        // headless: false,
+        args: [
+            '--no-sandbox'
+        ],
         defaultViewport: {
             width: 1000,
             height: 1080,
