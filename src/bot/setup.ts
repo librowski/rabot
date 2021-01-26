@@ -39,7 +39,6 @@ export const searchJobsScene = new Scenes.WizardScene<RabotContext>(
         } catch (e) {
             ctx.reply('I\'m very sorry, but something wen\'t wrong.');
             ctx.reply('Contact my admin please...');
-            console.error(e);
         }
 
         return ctx.scene.leave();

@@ -1,6 +1,7 @@
 import { Scenes, session, Telegraf } from 'telegraf';
 import { Scene } from './bot/constants';
 import { searchJobsScene } from './bot/setup';
+import { setup as setupDB } from './db/setup';
 import { initBrowser } from './scraping/browser';
 import { RabotContext } from './types';
 const { Stage } = Scenes;
@@ -8,6 +9,7 @@ const { BOT_TOKEN } = process.env;
 
 (async () => {
     await initBrowser(); 
+    await setupDB();
 
     const bot = new Telegraf<RabotContext>(BOT_TOKEN, {
        

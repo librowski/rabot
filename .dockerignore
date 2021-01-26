@@ -42,3 +42,9 @@ build/Release
 node_modules
 build/
 build/**
+
+.ash_history
+.config
+.yarnrc
+.yarn
+yarn.lock
