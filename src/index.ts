@@ -1,6 +1,6 @@
 import { Scenes, session, Telegraf } from 'telegraf';
+import { jobsScene } from './bot/commands/jobs/jobs';
 import { Scene } from './bot/constants';
-import { searchJobsScene } from './bot/setup';
 import { initDB } from './db/db';
 import { isUserSaved, saveUser } from './db/users';
 import { initBrowser } from './scraping/browser';
@@ -17,7 +17,7 @@ const { BOT_TOKEN } = process.env;
     });
 
     const stage = new Stage([
-        searchJobsScene
+        jobsScene
     ]);
     bot.use(session());
     bot.use(stage.middleware());

@@ -1,3 +1,4 @@
+import { SearchJobsCallback } from '../../types';
 import { page } from '../browser';
 import { LINKEDIN_JOBS_URL } from './constants';
 
@@ -8,14 +9,9 @@ const selectors = {
     METADATA: '.job-card-container__metadata-item',
 };
 
-type JobData = {
-    title: string;
-    link: string;
-    company: string;
-    metadataItems: string;
-}
-
-export const searchJobs = async (keyword: string): Promise<JobData[]> => {
+export const searchJobs: SearchJobsCallback = async (
+    keyword,
+) => {
     await page.goto(
         `${LINKEDIN_JOBS_URL}/search/?keywords=${encodeURIComponent(keyword)}`
     );
@@ -29,16 +25,14 @@ export const searchJobs = async (keyword: string): Promise<JobData[]> => {
         ) => elements.map((el: HTMLAnchorElement) => {
             const link = el.querySelector(sel.LINK) as HTMLAnchorElement;
             const company = el.querySelector(sel.COMPANY) as HTMLDivElement;
-            const metadataItems
-                = Array.from(el.querySelectorAll(sel.METADATA)) ?? [];
 
             return ({
                 title: link.innerText,
                 link: /.*?(?=\/\?refId)/.exec(link.href)[0],
                 company: company?.innerText ?? '',
-                metadataItems: metadataItems.map(
-                    (meta) => meta?.innerHTML ?? ''
-                ).join('\n'),
+                location: {
+                    city: ''
+                }
             });
         }),
         selectors,

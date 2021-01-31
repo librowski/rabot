@@ -9,7 +9,9 @@ export type JobLocation = {
 export type JobOffer = {
     link: string;
     title: string;
+    company: string;
     location: JobLocation;
+    portalName?: string;
     postedAt?: Date;
     validUntil?: Date;
     viewsCount?: number;

@@ -1,17 +1,10 @@
 import { Scenes } from 'telegraf';
-import { logIn } from '../scraping/linkedin/logIn';
-import { searchJobs } from '../scraping/linkedin/searchJobs';
-import { RabotContext } from '../types';
-import { Scene } from './constants';
-import { isTextMessage, parseJobs } from './utils';
+import { RabotContext } from '../../../types';
+import { Scene } from '../../constants';
+import { isTextMessage } from '../../utils';
+import { searchJobsFromAllPortals } from './searchJobsFromAllPortals';
 
-const getJobs = async (keyword: string) => {
-    await logIn();
-    const jobs = await searchJobs(keyword);
-    return parseJobs(jobs);
-};
-
-export const searchJobsScene = new Scenes.WizardScene<RabotContext>(
+export const jobsScene = new Scenes.WizardScene<RabotContext>(
     Scene.SEARCH_JOBS,
     async (ctx) => {
         const { message } = ctx;
@@ -23,12 +16,12 @@ export const searchJobsScene = new Scenes.WizardScene<RabotContext>(
 
         const keyword = message.text;
         try {
-            const jobs = await getJobs(keyword);
+            const jobs = await searchJobsFromAllPortals(keyword, '');
 
             ctx.reply(
                 'Here you are my dear 😘:\n\n'.concat(
-                    jobs.map(({ title, link, metadataItems, company }) =>
-                        `*[${title} at ${company}](${link})*\n📍${metadataItems}`
+                    jobs.map(({ title, link, company }) =>
+                        `*[${title} at ${company}](${link})*`
                     ).join('\n\n')
                 ),
                 {
@@ -45,7 +38,7 @@ export const searchJobsScene = new Scenes.WizardScene<RabotContext>(
     }
 );
 
-searchJobsScene.enter(
+jobsScene.enter(
     (ctx) => {
         ctx.reply('Okay, what are you looking for? Just give me a keyword.');
     },
