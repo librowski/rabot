@@ -16,10 +16,6 @@ RUN apk add --no-cache \
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
     PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
-# Puppeteer v5.2.1 works with Chromium 85.
-RUN yarn add puppeteer@5.2.1
-RUN node -v
-
 RUN addgroup -S pptruser && adduser -S -g pptruser pptruser \
     && mkdir -p /home/pptruser/Downloads /app \
     && chown -R pptruser:pptruser /home/pptruser \
@@ -27,10 +23,10 @@ RUN addgroup -S pptruser && adduser -S -g pptruser pptruser \
 
 WORKDIR /app
 
-COPY package.json .
+COPY package.json /app
 RUN yarn
 
-COPY . .
+COPY . /app
 RUN yarn build
 
 RUN chown -R pptruser:pptruser /app
