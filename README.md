@@ -24,6 +24,8 @@ Rabot - your personal assistant browsing job portals so you don't need to
     - [ ] Clear instruction for commands
     - [ ] One-time query for job offers `/jobs`
     - [ ] Managing a keyword based remainder - `/watch`, `/unwatch`, `/observed`
+- [ ] Employer's data (i.e. reviews from Glasdoor)
+- [ ] Workplace data (i.e. distance to the office) 
 - [ ] Keeping track of recruitment process (TBA)
 - [ ] Job offers filtering by available params (TBA)
 - [ ] Bot behavior customization with options object

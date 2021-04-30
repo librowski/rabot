@@ -47,4 +47,3 @@ build/**
 .config
 .yarnrc
 .yarn
-yarn.lock

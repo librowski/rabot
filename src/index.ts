@@ -25,7 +25,6 @@ const { BOT_TOKEN } = process.env;
     bot.start(async (ctx) => {
         const { from: user } = ctx;
         const { first_name, id } = user;
-
         if (await isUserSaved(id)) {
             ctx.reply(
                 `Welcome back ${first_name}. What are we looking for this time?`

@@ -24,6 +24,7 @@
     "author": "Jan Librowski",
     "license": "MIT",
     "dependencies": {
+        "axios": "^0.21.1",
         "dotenv": "^8.2.0",
         "lodash": "^4.17.20",
         "mongodb": "^3.6.3",

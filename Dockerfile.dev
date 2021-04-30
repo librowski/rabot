@@ -1,35 +1,28 @@
-FROM alpine:edge
+FROM node:14-alpine
 
 # Install latest Chromium
 RUN apk add --no-cache \
-      chromium \
-      nss \
-      freetype \
-      freetype-dev \
-      harfbuzz \
-      ca-certificates \
-      ttf-freefont \
-      nodejs \
-      yarn
+    chromium \
+    nss \
+    freetype \
+    freetype-dev \
+    harfbuzz \
+    ca-certificates \
+    ttf-freefont 
 
 # Tell Puppeteer to skip installing Chrome
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
     PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
-RUN addgroup -S pptruser && adduser -S -g pptruser pptruser \
-    && mkdir -p /home/pptruser/Downloads /app \
-    && chown -R pptruser:pptruser /home/pptruser \
-    && chown -R pptruser:pptruser /app
-
 WORKDIR /app
 
-COPY package.json /app
+RUN chown -R node:node /app
+
+USER node
+
+COPY package.json yarn.lock ./
 RUN yarn
 
-COPY . /app
-RUN yarn build
+COPY . .
 
-RUN chown -R pptruser:pptruser /app
-RUN chmod -R 777 /app
-
-USER pptruser
+CMD ["yarn dev"]
